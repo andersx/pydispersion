@@ -143,21 +143,22 @@ program testapi
   ! Convert species name to atomic number for each atom
   atnum(:) = get_atomic_number(speciesNames(species))
 
+  call get_c6(dftd3, coords, atnum, edisp, grads)
   ! Calculate dispersion and gradients for non-periodic case
-  call dftd3_dispersion(dftd3, coords, atnum, edisp, grads)
-  write(*, "(A)") "*** Dispersion for non-periodic case"
-  write(*, "(A,ES20.12)") "Energy [au]:", edisp
-  write(*, "(A)") "Gradients [au]:"
-  write(*, "(3ES20.12)") grads
-  write(*, *)
-  
-  ! Calculate dispersion and gradients for periodic case
-  call dftd3_pbc_dispersion(dftd3, coords, atnum, latVecs, edisp, grads, stress)
-  write(*, "(A)") "*** Dispersion for periodic case"
-  write(*, "(A,ES20.12)") "Energy [au]:", edisp
-  write(*, "(A)") "Gradients [au]:"
-  write(*, "(3ES20.12)") grads
-  write(*, "(A)") "Stress [au]:"
-  write(*, "(3ES20.12)") stress
+  ! call dftd3_dispersion(dftd3, coords, atnum, edisp, grads)
+  ! write(*, "(A)") "*** Dispersion for non-periodic case"
+  ! write(*, "(A,ES20.12)") "Energy [au]:", edisp
+  ! write(*, "(A)") "Gradients [au]:"
+  ! write(*, "(3ES20.12)") grads
+  ! write(*, *)
+  ! 
+  ! ! Calculate dispersion and gradients for periodic case
+  ! call dftd3_pbc_dispersion(dftd3, coords, atnum, latVecs, edisp, grads, stress)
+  ! write(*, "(A)") "*** Dispersion for periodic case"
+  ! write(*, "(A,ES20.12)") "Energy [au]:", edisp
+  ! write(*, "(A)") "Gradients [au]:"
+  ! write(*, "(3ES20.12)") grads
+  ! write(*, "(A)") "Stress [au]:"
+  ! write(*, "(3ES20.12)") stress
 
 end program testapi
